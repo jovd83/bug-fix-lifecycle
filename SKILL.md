@@ -39,16 +39,11 @@ Use this skill to move a defect from intake through verified resolution without 
 - Do not treat global line coverage alone as proof of adequate regression safety.
 - Do not create persistent shared-memory behavior inside this skill. Shared memory belongs behind an external integration boundary such as a dedicated shared-memory skill.
 
-## Dispatcher Integration
+## Working With Other Skills
 
-Use `skill-dispatcher` as the primary integration layer whenever this skill needs help from another skill.
-
-- Prefer dispatching by intent rather than naming a sibling skill directly.
 - Prefer the repository's native test stack over an organization-wide default.
-- Use shared memory only for stable cross-project routing policy, not for task-local routing.
-- Treat direct skill paths as a fallback only when the dispatcher has no valid registry match.
 
-Common downstream intents:
+Common downstream needs:
 
 - `design_confirmation_tests`
 - `render_test_artifact`
