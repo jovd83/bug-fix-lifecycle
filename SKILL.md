@@ -1,5 +1,5 @@
 ---
-name: defect-lifecycle-agent-skill
+name: bug-fix-lifecycle
 description: Use when Codex must report a newly discovered defect, implement an approved bug fix, or harden regression coverage and documentation around a known bug. This skill enforces repository-aware bug intake, failing confirmation tests before fixes, scoped verification, documentation updates when warranted, and a structured resolution report.
 disable-model-invocation: true
 metadata:
@@ -18,7 +18,7 @@ metadata:
 
 # Defect Lifecycle Agent Skill
 
-> **Author:** jovd83 | **Version:** 2.3.0
+> **Author:** jovd83 | **Version:** 3.0.0
 
 
 Use this skill to move a defect from intake through verified resolution without skipping the evidence that makes the fix trustworthy.

@@ -69,7 +69,9 @@
       "reason": "Confirm the security vulnerability with a targeted test or static analysis before the fix is written.",
       "risk": "high",
       "pass_context_forward": false,
-      "query_suffix": "Read the test design output from Phase 2. Only run this phase if the bug was classified as a security vulnerability (injection, auth bypass, authz flaw, data exposure, etc.). If the bug has no security dimension, state: 'security confirmation test: not applicable for this bug type' and stop. Produce a static analysis finding or safe proof-of-concept only - do not attempt to exploit any live system."
+      "query_suffix": "Read the test design output from Phase 2. Only run this phase if the bug was classified as a security vulnerability (injection, auth bypass, authz flaw, data exposure, etc.). If the bug has no security dimension, state: 'security confirmation test: not applicable for this bug type' and stop. Produce a static analysis finding or safe proof-of-concept only - do not attempt to exploit any live system.",
+      "on_phase_complete": "hitl",
+      "_hitl_note": "Gate before the fix is written. All confirmation phases (3b-3f) have either reproduced the bug at the right layer or been marked not applicable. The human must review the failing-test evidence and approve writing the fix; --reject halts the chain with all confirmation artefacts preserved."
     },
     {
       "id": "implement_fix",
@@ -79,6 +81,7 @@
       "reason": "Agent implements the minimal fix. No unrelated changes. All confirmation tests from Steps 3b-3f must pass after this.",
       "risk": "high",
       "pass_context_forward": false,
+      "query_suffix": "Implement the MINIMAL fix that makes the confirmation test(s) from phases 3b-3f pass. Use your native file-edit tools (Edit / Write / Bash) to actually modify the code.\n\nSCOPE DISCIPLINE: change only what is required to make the failing confirmation tests pass. No unrelated refactors. No drive-by improvements. No 'while I'm here' cleanups. If you spot something else that's broken, note it in the phase artefact's 'observed-but-not-fixed' section — do not touch it. The next chain phase will re-run the confirmation tests; they must all pass.\n\nOUTPUT: write a concise summary of what you changed (file paths, deltas per file, mapping back to which confirmation test the change was driven by) as the phase artefact. End with an 'observed-but-not-fixed' section if applicable.",
       "_note": "Agent-handled."
     },
     {

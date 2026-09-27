@@ -1,5 +1,5 @@
-[![Validate Skills](https://github.com/jovd83/defect-lifecycle-agent-skill/actions/workflows/ci.yml/badge.svg)](https://github.com/jovd83/defect-lifecycle-agent-skill/actions/workflows/ci.yml)
-[![version](https://img.shields.io/badge/version-2.3.0-blue)](CHANGELOG.md)
+[![Validate Skills](https://github.com/jovd83/bug-fix-lifecycle/actions/workflows/ci.yml/badge.svg)](https://github.com/jovd83/bug-fix-lifecycle/actions/workflows/ci.yml)
+[![version](https://img.shields.io/badge/version-3.0.0-blue)](CHANGELOG.md)
 [![license](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?style=flat&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/jovd83)
 
@@ -7,9 +7,9 @@
 
 Enterprise-grade AgentSkill for defect intake, approved bug fixing, regression hardening, traceable reporting, and tracker-ready export artifacts.
 
-Public repository/package name: `defect-lifecycle-agent-skill`
+Public repository/package name: `bug-fix-lifecycle`
 
-Stable skill trigger: `$defect-lifecycle-agent-skill`
+Stable skill trigger: `$bug-fix-lifecycle`
 
 This repository provides:
 
@@ -67,7 +67,7 @@ Self-gating phases declare themselves "not applicable" when the bug type doesn't
 ## Repository Layout
 
 ```text
-defect-lifecycle-agent-skill/
+bug-fix-lifecycle/
 |- SKILL.md
 |- README.md
 |- agents/openai.yaml
@@ -181,5 +181,5 @@ These are related but intentionally out of scope for the current implementation:
 ## Publishability Notes
 
 - the repo is self-contained and uses only Node built-ins
-- the canonical skill trigger is `$defect-lifecycle-agent-skill`
+- the canonical skill trigger is `$bug-fix-lifecycle`
 - generated tracker drafts are intended for review or for a separate organization-specific integration layer

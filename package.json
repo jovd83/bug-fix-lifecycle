@@ -1,6 +1,6 @@
 {
-  "name": "defect-lifecycle-agent-skill",
-  "version": "2.2.0",
+  "name": "bug-fix-lifecycle",
+  "version": "3.0.0",
   "description": "AgentSkill for reporting defects and implementing approved bug fixes with traceable verification and tracker-ready exports.",
   "license": "MIT",
   "private": true,
