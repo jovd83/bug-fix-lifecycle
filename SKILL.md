@@ -1,6 +1,7 @@
 ---
 name: defect-lifecycle-agent-skill
 description: Use when Codex must report a newly discovered defect, implement an approved bug fix, or harden regression coverage and documentation around a known bug. This skill enforces repository-aware bug intake, failing confirmation tests before fixes, scoped verification, documentation updates when warranted, and a structured resolution report.
+disable-model-invocation: true
 metadata:
   dispatcher-layer: execution
   dispatcher-lifecycle: active
@@ -17,7 +18,7 @@ metadata:
 
 # Defect Lifecycle Agent Skill
 
-> **Author:** jovd83 | **Version:** 2.2.1
+> **Author:** jovd83 | **Version:** 2.3.0
 
 
 Use this skill to move a defect from intake through verified resolution without skipping the evidence that makes the fix trustworthy.
@@ -157,6 +158,24 @@ When the caller wants machine-readable or tracker-ready output:
 - emit canonical JSON that matches [schemas/bug-discovery-report.schema.json](schemas/bug-discovery-report.schema.json) or [schemas/bug-fix-report.schema.json](schemas/bug-fix-report.schema.json)
 - use `node scripts/export-tracker-artifact.js --tracker jira|linear --input <report.json>` to generate a tracker draft artifact
 - read [references/tracker-exports.md](references/tracker-exports.md) before claiming a tracker export is ready
+
+## Chain Phases
+
+`config/chain_definition.json` is the executable contract: 11 phases, run by `skill-orchestrator/scripts/next_phase.py`. In Claude Code, run the whole chain with the **`bug-fix-lifecycle`** agent (`~/.claude/agents/bug-fix-lifecycle.md`). It stops at each approval gate and returns, and the main conversation resumes it. This SKILL.md stays the reference for the phases and for manual runs in other harnesses.
+
+| # | Phase | Skill | Gate | Workflow step above |
+|---|---|---|---|---|
+| 1 | `repo_discovery` | `codebase-context` |  | 2. Discover repository conventions |
+| 2 | `test_approach_design` | `test-design-orchestrator` |  | 3. Discovery-only path: test design |
+| 3 | `unit_confirmation_test` | `stack-aware-unit-testing-skill` |  | 3. Confirmation tests (fail before the fix) |
+| 4 | `service_confirmation_test` | `api-contract-sentinel` |  | 3. Confirmation tests |
+| 5 | `frontend_confirmation_test` | `playwright-skill` |  | 3. Confirmation tests |
+| 6 | `performance_confirmation_test` | `performance-testing-skill` |  | 3. Confirmation tests |
+| 7 | `security_confirmation_test` | `defensive-appsec-review-skill` | **approval gate after** | 3. Confirmation tests; then approval (1) |
+| 8 | `implement_fix` | agent-handled |  | 3. Approved-fix path |
+| 9 | `regression_run` | `stack-aware-unit-testing-skill` |  | 4. Coverage and regression discipline |
+| 10 | `coverage_review` | `automated-test-reviewer` |  | 4. Coverage and regression discipline |
+| 11 | `resolution_report` | agent-handled |  | 5. Documentation and artifact updates; Response Contract |
 
 ## Memory Model
 

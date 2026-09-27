@@ -20,6 +20,12 @@
 - upgraded the coverage helper to support thresholds, metrics, manifests, and file-scoped validation
 - added references, examples, validation scripts, tests, install metadata, and GitHub workflow packaging
 
+## [2.3.0] - 2026-09-27
+
+### Changed
+- `disable-model-invocation: true`: the chain runs as a Claude Code agent (`bug-fix-lifecycle`) instead of being picked from its description.
+- New "Chain Phases" section, generated from `config/chain_definition.json`: engine phase, skill, gate, and the matching step of this SKILL.md's workflow.
+
 ## [2.2.1] - 2026-04-30
 
 ### Changed
