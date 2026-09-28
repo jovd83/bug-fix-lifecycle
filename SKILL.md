@@ -1,6 +1,6 @@
 ---
 name: bug-fix-lifecycle
-description: Use when Codex must report a newly discovered defect, implement an approved bug fix, or harden regression coverage and documentation around a known bug. This skill enforces repository-aware bug intake, failing confirmation tests before fixes, scoped verification, documentation updates when warranted, and a structured resolution report.
+description: Use when the agent must report a newly discovered defect, implement an approved bug fix, or harden regression coverage and documentation around a known bug. This skill enforces repository-aware bug intake, failing confirmation tests before fixes, scoped verification, documentation updates when warranted, and a structured resolution report.
 disable-model-invocation: true
 metadata:
   dispatcher-layer: execution
