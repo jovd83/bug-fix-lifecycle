@@ -38,7 +38,7 @@ Use this skill to move a defect from intake through verified resolution without 
 - Do not start fixing tracker bugs unless the user explicitly asks for the fix or the issue is clearly marked approved.
 - Do not patch code before you have either reproduced the failure or explained precisely why deterministic reproduction is currently blocked.
 - Do not treat global line coverage alone as proof of adequate regression safety.
-- Do not create persistent shared-memory behavior inside this skill. Shared memory belongs behind an external integration boundary such as a dedicated shared-memory skill.
+- Do not create persistent shared-memory behavior inside this skill. Cross-project knowledge belongs in the agent's own memory (for example CLAUDE.md or AGENTS.md).
 
 ## Working With Other Skills
 
@@ -181,7 +181,7 @@ When the caller wants machine-readable or tracker-ready output:
 
 - Runtime memory: live notes, reproduction data, stack traces, diffs, and the active verification plan for the current task only.
 - Project-local memory: issue writeups, markdown reports, local docs, or other repository artifacts deliberately saved in the target project.
-- Shared memory: out of scope for this skill. If cross-project reuse is needed, integrate a separate shared-memory skill rather than embedding that responsibility here.
+- Shared memory: out of scope for this skill. If cross-project reuse is needed, use the agent's own memory (for example CLAUDE.md or AGENTS.md) rather than embedding that responsibility here.
 
 Do not automatically promote runtime findings into persistent storage. Persist only what improves traceability for the current project.
 
